@@ -1,9 +1,7 @@
 /* ==========================================================
    Site pessoal — Júlia Alexadra de Costa Hang
-   Folha de estilo externa (tema em tons de roxo)
    ========================================================== */
 
-/* Fontes (se estiver sem internet, o navegador usa as alternativas) */
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap");
 
 /* ---------- 1. Variáveis (paleta e medidas) ---------- */
@@ -105,7 +103,7 @@ header {
 }
 
 header img {
-    order: -1; /* a foto aparece antes do nome, sem mudar o HTML */
+    order: -1; 
     width: 180px;
     height: 180px;
     object-fit: cover;
@@ -130,7 +128,6 @@ header > p {
 
 /* ---------- 5. Menu de navegação ---------- */
 nav h2 {
-    /* título "Navegação" fica escondido na tela, mas continua para leitores de tela */
     position: absolute;
     width: 1px;
     height: 1px;
@@ -368,7 +365,6 @@ footer a:hover {
     background-color: var(--lilas-300);
 }
 
-/* ---------- 13. Telas pequenas ---------- */
 @media (max-width: 600px) {
     body {
         font-size: 1rem;
@@ -396,7 +392,6 @@ footer a:hover {
     }
 }
 
-/* ---------- 14. Respeita quem prefere menos movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
