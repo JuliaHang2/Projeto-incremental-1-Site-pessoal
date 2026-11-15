@@ -1,0 +1,588 @@
+/* ==========================================================
+   Site pessoal — Júlia Alexadra de Costa Hang
+   CSS Mobile First (tema roxo) com Flexbox e Grid
+
+   Estratégia:
+   1. BASE ......... celular (~375 px). Sem media query.
+   2. TABLET ....... @media (min-width: 768px)
+   3. DESKTOP ...... @media (min-width: 1200px)
+
+   Este arquivo é completo: use ele no lugar do style.css,
+   não os dois ao mesmo tempo.
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap");
+
+/* ==========================================================
+   0. VARIÁVEIS
+   ========================================================== */
+:root {
+    --roxo-950: #1f0a3a;
+    --roxo-900: #2e1065;
+    --roxo-700: #5b21b6;
+    --roxo-600: #6d28d9;
+    --roxo-500: #7c3aed;
+    --lilas-300: #c4b5fd;
+    --lilas-200: #ddd6fe;
+    --lilas-100: #ede9fe;
+    --lilas-50: #f8f5ff;
+    --branco: #ffffff;
+    --texto: #2b2140;
+    --texto-suave: #5f5578;
+
+    --fonte-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+    --fonte-corpo: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+
+    --raio: 0.875rem;
+    --sombra: 0 6px 20px rgba(76, 29, 149, 0.12);
+    --espaco: 1rem;          /* margem lateral da página (celular) */
+    --largura-max: 68.75rem; /* ~1100px, só limita em telas grandes */
+}
+
+/* ==========================================================
+   1. BASE — CELULAR (~375 px)
+   ========================================================== */
+
+/* ---------- Reset e tipografia ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-corpo);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--texto);
+    background-color: var(--lilas-50);
+    overflow-wrap: break-word; /* textos longos (e-mail, links) nunca estouram a tela */
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    line-height: 1.2;
+    margin: 0 0 0.6em;
+}
+
+p {
+    margin: 0 0 1em;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Imagens e mídias nunca passam da largura disponível */
+img,
+video,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+section[id] {
+    scroll-margin-top: 1rem;
+}
+
+/* ---------- Links ---------- */
+a {
+    color: var(--roxo-600);
+    font-weight: 600;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+a:hover {
+    color: var(--roxo-900);
+    background-color: var(--lilas-200);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--roxo-500);
+    outline-offset: 3px;
+}
+
+/* ---------- Cabeçalho (Grid de 1 coluna) ---------- */
+header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "foto"
+        "titulo"
+        "subtitulo"
+        "menu";
+    justify-items: center;
+    text-align: center;
+    row-gap: 0.75rem;
+    padding: 2rem var(--espaco) 1.75rem;
+    color: var(--branco);
+    background: linear-gradient(160deg, var(--roxo-950) 0%, var(--roxo-700) 100%);
+    border-bottom: 5px solid var(--lilas-300);
+}
+
+header img {
+    grid-area: foto;
+    width: min(100%, 8.5rem); /* nunca maior que a tela, no máximo ~136px */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--lilas-300);
+    box-shadow: 0 0 0 6px rgba(196, 181, 253, 0.25);
+    margin-bottom: 0.5rem;
+}
+
+header h1 {
+    grid-area: titulo;
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    margin: 0;
+}
+
+header > p {
+    grid-area: subtitulo;
+    max-width: 34ch;
+    margin: 0 0 0.75rem;
+    color: var(--lilas-200);
+    font-size: 1rem;
+}
+
+header nav {
+    grid-area: menu;
+    width: 100%;
+}
+
+/* ---------- Menu (Flexbox em coluna: botões grandes para o toque) ---------- */
+nav h2 {
+    /* escondido na tela, mantido para leitores de tela */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    display: block;
+    padding: 0.7rem 1rem; /* área de toque confortável (~44px) */
+    border: 2px solid var(--lilas-300);
+    border-radius: 999px;
+    color: var(--branco);
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background-color: var(--lilas-100);
+    color: var(--roxo-900);
+    border-color: var(--lilas-100);
+}
+
+/* ---------- Conteúdo principal (Grid de 1 coluna) ---------- */
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: var(--largura-max);
+    margin: 0 auto;
+    padding: 1.5rem var(--espaco) 0.5rem;
+}
+
+main > section {
+    min-width: 0; /* evita que o conteúdo force o grid a ficar mais largo que a tela */
+    background-color: var(--branco);
+    border: 1px solid var(--lilas-200);
+    border-top: 5px solid var(--roxo-500);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1.25rem 1.1rem 1.4rem;
+}
+
+main > section > h2 {
+    font-size: 1.45rem;
+    color: var(--roxo-700);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--lilas-100);
+}
+
+section h3 {
+    font-size: 1.1rem;
+    color: var(--roxo-900);
+    margin-bottom: 0.3rem;
+}
+
+/* ---------- Formação ---------- */
+#formacao h3 {
+    margin-top: 1.1rem;
+}
+
+#formacao h3:first-of-type {
+    margin-top: 0;
+}
+
+#formacao p {
+    color: var(--texto-suave);
+}
+
+/* ---------- Experiências (Grid de 1 coluna) ---------- */
+#experiencias {
+    /* a seção já é item do grid de <main>; aqui organizamos os cartões internos */
+    display: block;
+}
+
+#experiencias article {
+    background-color: var(--lilas-50);
+    border-left: 5px solid var(--roxo-500);
+    border-radius: 0 var(--raio) var(--raio) 0;
+    padding: 1rem 1.1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+#experiencias article:last-child {
+    margin-bottom: 0;
+}
+
+#experiencias article:hover {
+    transform: translateX(4px);
+    border-left-color: var(--roxo-900);
+    box-shadow: var(--sombra);
+}
+
+#experiencias article p {
+    color: var(--texto-suave);
+}
+
+/* ---------- Habilidades (Flexbox com quebra de linha) ---------- */
+#habilidades ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#habilidades li {
+    padding: 0.35rem 0.85rem;
+    background-color: var(--lilas-100);
+    color: var(--roxo-900);
+    border: 1px solid var(--lilas-300);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+#habilidades li:hover {
+    background-color: var(--roxo-600);
+    color: var(--branco);
+    transform: translateY(-2px);
+}
+
+/* ---------- Contato ---------- */
+#contato > ul {
+    padding-left: 1.2rem;
+    margin: 0 0 1.25rem;
+}
+
+#contato li::marker {
+    color: var(--roxo-500);
+}
+
+#contato h3 {
+    margin-top: 1.25rem;
+}
+
+/* ---------- Formulário (largura 100%, botão grande) ---------- */
+form {
+    width: 100%;
+    background-color: var(--lilas-50);
+    border: 1px solid var(--lilas-200);
+    border-radius: var(--raio);
+    padding: 1rem;
+}
+
+form p {
+    margin-bottom: 0.9rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    color: var(--roxo-900);
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;           /* sobrescreve o cols="35" do HTML */
+    max-width: 100%;
+    padding: 0.75rem 0.9rem;
+    font-family: inherit;
+    font-size: 1rem;       /* 16px evita o zoom automático do iPhone */
+    color: var(--texto);
+    background-color: var(--branco);
+    border: 2px solid var(--lilas-300);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+}
+
+input:hover,
+textarea:hover {
+    border-color: var(--roxo-500);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--roxo-600);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+}
+
+button {
+    width: 100%;           /* botão ocupa a largura toda no celular */
+    min-height: 2.75rem;
+    padding: 0.8rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--branco);
+    background-color: var(--roxo-600);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--roxo-900);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(46, 16, 101, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ---------- Rodapé ---------- */
+footer {
+    margin-top: 1.5rem;
+    padding: 1.5rem var(--espaco);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--lilas-200);
+    background-color: var(--roxo-950);
+    border-top: 5px solid var(--roxo-500);
+}
+
+footer a {
+    color: var(--lilas-300);
+}
+
+footer a:hover {
+    color: var(--roxo-950);
+    background-color: var(--lilas-300);
+}
+
+/* ==========================================================
+   2. TABLET — a partir de 768 px
+   ========================================================== */
+@media (min-width: 768px) {
+    :root {
+        --espaco: 2rem;
+    }
+
+    body {
+        font-size: 1.05rem;
+    }
+
+    /* Cabeçalho: foto ao lado do nome (Grid de 2 colunas) */
+    header {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "foto titulo"
+            "foto subtitulo"
+            "menu menu";
+        justify-items: start;
+        align-items: center;
+        text-align: left;
+        column-gap: 2rem;
+        row-gap: 0.5rem;
+        padding: 2.5rem var(--espaco) 2rem;
+    }
+
+    header img {
+        width: 9.5rem;
+        margin: 0;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+        align-self: end;
+    }
+
+    header > p {
+        align-self: start;
+        margin: 0;
+        max-width: 40ch;
+    }
+
+    header nav {
+        margin-top: 1.25rem;
+    }
+
+    /* Menu em linha (Flexbox em fileira com quebra) */
+    nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+
+    nav a {
+        padding: 0.45rem 1.1rem;
+    }
+
+    /* Conteúdo com mais respiro */
+    main {
+        gap: 1.5rem;
+        padding-top: 2rem;
+    }
+
+    main > section {
+        padding: 1.75rem 1.75rem 1.9rem;
+    }
+
+    main > section > h2 {
+        font-size: 1.7rem;
+    }
+
+    /* Experiências: cartões em 2 colunas (Grid) */
+    #experiencias {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    #experiencias > h2 {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+    }
+
+    #experiencias article {
+        margin-bottom: 0;
+    }
+
+    #experiencias article:last-child {
+        grid-column: 1 / -1; /* o terceiro cartão ocupa a largura toda */
+    }
+
+    /* Formulário: botão volta ao tamanho natural */
+    form {
+        max-width: 36rem;
+        padding: 1.5rem;
+    }
+
+    button {
+        width: auto;
+        padding: 0.8rem 2rem;
+    }
+}
+
+/* ==========================================================
+   3. DESKTOP — a partir de 1200 px
+   ========================================================== */
+@media (min-width: 1200px) {
+    :root {
+        --espaco: 2.5rem;
+    }
+
+    /* Cabeçalho: conteúdo alinhado ao mesmo miolo da página */
+    header {
+        padding-inline: max(var(--espaco), calc((100% - var(--largura-max)) / 2));
+        column-gap: 2.5rem;
+    }
+
+    header img {
+        width: 11rem;
+    }
+
+    header h1 {
+        font-size: 2.8rem;
+    }
+
+    header > p {
+        font-size: 1.15rem;
+    }
+
+    /* Corpo da página em 2 colunas (Grid) */
+    main {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: start;
+        gap: 2rem;
+        padding-top: 2.5rem;
+    }
+
+    #experiencias {
+        grid-column: 1 / -1; /* experiências ocupam as 2 colunas */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    #experiencias article:last-child {
+        grid-column: auto; /* os 3 cartões lado a lado */
+    }
+
+    main > section {
+        padding: 2rem 2rem 2.2rem;
+    }
+
+    form {
+        max-width: none;
+    }
+}
+
+/* ==========================================================
+   4. ACESSIBILIDADE — menos movimento
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
