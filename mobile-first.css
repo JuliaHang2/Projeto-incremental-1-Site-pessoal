@@ -1,14 +1,5 @@
 /* ==========================================================
    Site pessoal — Júlia Alexadra de Costa Hang
-   CSS Mobile First (tema roxo) com Flexbox e Grid
-
-   Estratégia:
-   1. BASE ......... celular (~375 px). Sem media query.
-   2. TABLET ....... @media (min-width: 768px)
-   3. DESKTOP ...... @media (min-width: 1200px)
-
-   Este arquivo é completo: use ele no lugar do style.css,
-   não os dois ao mesmo tempo.
    ========================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap");
