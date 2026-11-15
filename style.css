@@ -1,0 +1,408 @@
+/* ==========================================================
+   Site pessoal — Júlia Alexadra de Costa Hang
+   Folha de estilo externa (tema em tons de roxo)
+   ========================================================== */
+
+/* Fontes (se estiver sem internet, o navegador usa as alternativas) */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap");
+
+/* ---------- 1. Variáveis (paleta e medidas) ---------- */
+:root {
+    --roxo-950: #1f0a3a;
+    --roxo-900: #2e1065;
+    --roxo-700: #5b21b6;
+    --roxo-600: #6d28d9;
+    --roxo-500: #7c3aed;
+    --lilas-300: #c4b5fd;
+    --lilas-200: #ddd6fe;
+    --lilas-100: #ede9fe;
+    --lilas-50: #f8f5ff;
+    --branco: #ffffff;
+    --texto: #2b2140;
+    --texto-suave: #5f5578;
+
+    --fonte-titulo: "Fraunces", Georgia, "Times New Roman", serif;
+    --fonte-corpo: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+
+    --raio: 14px;
+    --sombra: 0 8px 24px rgba(76, 29, 149, 0.12);
+    --largura: 860px;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-corpo);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--texto);
+    background-color: var(--lilas-50);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    line-height: 1.2;
+    margin: 0 0 0.6em;
+}
+
+p {
+    margin: 0 0 1em;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Âncoras não ficam coladas no topo ao navegar pelo menu */
+section[id] {
+    scroll-margin-top: 1.5rem;
+}
+
+/* ---------- 3. Links ---------- */
+a {
+    color: var(--roxo-600);
+    font-weight: 600;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+a:hover {
+    color: var(--roxo-900);
+    background-color: var(--lilas-200);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--roxo-500);
+    outline-offset: 3px;
+}
+
+/* ---------- 4. Cabeçalho ---------- */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.25rem 2.5rem;
+    color: var(--branco);
+    background: linear-gradient(160deg, var(--roxo-950) 0%, var(--roxo-700) 100%);
+    border-bottom: 6px solid var(--lilas-300);
+}
+
+header img {
+    order: -1; /* a foto aparece antes do nome, sem mudar o HTML */
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--lilas-300);
+    box-shadow: 0 0 0 8px rgba(196, 181, 253, 0.25);
+    margin-bottom: 1.5rem;
+}
+
+header h1 {
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.4rem;
+}
+
+header > p {
+    max-width: 38ch;
+    margin: 0 auto 1.75rem;
+    color: var(--lilas-200);
+    font-size: 1.1rem;
+}
+
+/* ---------- 5. Menu de navegação ---------- */
+nav h2 {
+    /* título "Navegação" fica escondido na tela, mas continua para leitores de tela */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0.45rem 1.1rem;
+    border: 2px solid var(--lilas-300);
+    border-radius: 999px;
+    color: var(--branco);
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background-color: var(--lilas-100);
+    color: var(--roxo-900);
+    border-color: var(--lilas-100);
+}
+
+/* ---------- 6. Conteúdo principal ---------- */
+main {
+    max-width: var(--largura);
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 1rem;
+}
+
+main > section {
+    background-color: var(--branco);
+    border: 1px solid var(--lilas-200);
+    border-top: 6px solid var(--roxo-500);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 2rem 2rem 2.1rem;
+    margin-bottom: 2rem;
+}
+
+main > section > h2 {
+    font-size: 1.8rem;
+    color: var(--roxo-700);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 2px solid var(--lilas-100);
+}
+
+section h3 {
+    font-size: 1.2rem;
+    color: var(--roxo-900);
+    margin-bottom: 0.3rem;
+}
+
+/* ---------- 7. Formação acadêmica ---------- */
+#formacao h3 {
+    margin-top: 1.2rem;
+}
+
+#formacao h3:first-of-type {
+    margin-top: 0;
+}
+
+#formacao p {
+    color: var(--texto-suave);
+}
+
+/* ---------- 8. Experiências e projetos ---------- */
+article {
+    background-color: var(--lilas-50);
+    border-left: 5px solid var(--roxo-500);
+    border-radius: 0 var(--raio) var(--raio) 0;
+    padding: 1.1rem 1.4rem;
+    margin-bottom: 1.2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+article:last-child {
+    margin-bottom: 0;
+}
+
+article:hover {
+    transform: translateX(4px);
+    border-left-color: var(--roxo-900);
+    box-shadow: var(--sombra);
+}
+
+article p {
+    color: var(--texto-suave);
+}
+
+/* ---------- 9. Habilidades (lista vira "etiquetas") ---------- */
+#habilidades ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#habilidades li {
+    padding: 0.4rem 1rem;
+    background-color: var(--lilas-100);
+    color: var(--roxo-900);
+    border: 1px solid var(--lilas-300);
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+#habilidades li:hover {
+    background-color: var(--roxo-600);
+    color: var(--branco);
+    transform: translateY(-2px);
+}
+
+/* ---------- 10. Contato ---------- */
+#contato > ul {
+    padding-left: 1.2rem;
+    margin: 0 0 1.5rem;
+}
+
+#contato li::marker {
+    color: var(--roxo-500);
+}
+
+#contato h3 {
+    margin-top: 1.5rem;
+}
+
+/* ---------- 11. Formulário ---------- */
+form {
+    background-color: var(--lilas-50);
+    border: 1px solid var(--lilas-200);
+    border-radius: var(--raio);
+    padding: 1.5rem;
+    max-width: 520px;
+}
+
+form p {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+    color: var(--roxo-900);
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--texto);
+    background-color: var(--branco);
+    border: 2px solid var(--lilas-300);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+input:hover,
+textarea:hover {
+    border-color: var(--roxo-500);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--roxo-600);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+}
+
+button {
+    padding: 0.8rem 1.8rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--branco);
+    background-color: var(--roxo-600);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--roxo-900);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(46, 16, 101, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ---------- 12. Rodapé ---------- */
+footer {
+    margin-top: 2rem;
+    padding: 2rem 1.25rem;
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--lilas-200);
+    background-color: var(--roxo-950);
+    border-top: 6px solid var(--roxo-500);
+}
+
+footer a {
+    color: var(--lilas-300);
+}
+
+footer a:hover {
+    color: var(--roxo-950);
+    background-color: var(--lilas-300);
+}
+
+/* ---------- 13. Telas pequenas ---------- */
+@media (max-width: 600px) {
+    body {
+        font-size: 1rem;
+    }
+
+    header {
+        padding-top: 2rem;
+    }
+
+    header img {
+        width: 140px;
+        height: 140px;
+    }
+
+    main > section {
+        padding: 1.4rem 1.2rem 1.5rem;
+    }
+
+    main > section > h2 {
+        font-size: 1.5rem;
+    }
+
+    form {
+        padding: 1.1rem;
+    }
+}
+
+/* ---------- 14. Respeita quem prefere menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
